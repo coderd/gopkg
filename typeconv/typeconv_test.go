@@ -93,7 +93,7 @@ func TestSliceBool(t *testing.T) {
 		true,
 		false,
 	}
-	_, err = sliceBool(v)
+	_, err = SliceBool(v)
 	assert.Nil(t, err)
 
 	// Test failed cases
@@ -101,7 +101,7 @@ func TestSliceBool(t *testing.T) {
 		1,
 		2,
 	}
-	_, err = sliceBool(v1)
+	_, err = SliceBool(v1)
 	assert.NotNil(t, err)
 }
 
@@ -113,7 +113,7 @@ func TestSliceFloat64(t *testing.T) {
 		1.0,
 		2.1,
 	}
-	_, err = sliceFloat64(v)
+	_, err = SliceFloat64(v)
 	assert.Nil(t, err)
 
 	// Test failed cases
@@ -121,7 +121,7 @@ func TestSliceFloat64(t *testing.T) {
 		1,
 		2,
 	}
-	_, err = sliceFloat64(v1)
+	_, err = SliceFloat64(v1)
 	assert.NotNil(t, err)
 }
 
@@ -133,7 +133,7 @@ func TestSliceString(t *testing.T) {
 		"v1",
 		"v2",
 	}
-	_, err = sliceString(v)
+	_, err = SliceString(v)
 	assert.Nil(t, err)
 
 	// Test failed cases
@@ -141,6 +141,6 @@ func TestSliceString(t *testing.T) {
 		1,
 		2,
 	}
-	_, err = sliceString(v1)
+	_, err = SliceString(v1)
 	assert.NotNil(t, err)
 }

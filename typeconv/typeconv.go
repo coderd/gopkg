@@ -77,7 +77,7 @@ func MapStringString(v map[string]interface{}) (map[string]string, error) {
 	return r, nil
 }
 
-func sliceBool(v []interface{}) ([]bool, error) {
+func SliceBool(v []interface{}) ([]bool, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -95,7 +95,7 @@ func sliceBool(v []interface{}) ([]bool, error) {
 	return r, nil
 }
 
-func sliceFloat64(v []interface{}) ([]float64, error) {
+func SliceFloat64(v []interface{}) ([]float64, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -113,7 +113,7 @@ func sliceFloat64(v []interface{}) ([]float64, error) {
 	return r, nil
 }
 
-func sliceString(v []interface{}) ([]string, error) {
+func SliceString(v []interface{}) ([]string, error) {
 	if v == nil {
 		return nil, nil
 	}
