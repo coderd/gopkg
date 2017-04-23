@@ -1,10 +1,37 @@
 package typeconv
 
 import (
+	"reflect"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
+
+func TestSet(t *testing.T) {
+	var src interface{} = map[string]int{"k": 1}
+	var dst map[string]int
+
+	// Test correct cases
+	err := Set(&dst, src)
+	assert.Nil(t, err)
+	assert.True(t, reflect.DeepEqual(dst, map[string]int{"k": 1}))
+
+	// Test failed cases
+	// type mismatch
+	var dst2 map[string]bool
+	err = Set(&dst2, src)
+	assert.NotNil(t, err)
+
+	// dst is not pointer
+	err = Set(dst2, src)
+	assert.NotNil(t, err)
+
+	// dst is nil pointer
+	var dst3 = &dst2
+	dst3 = nil
+	err = Set(dst3, src)
+	assert.NotNil(t, err)
+}
 
 func TestMapStringBool(t *testing.T) {
 	var err error

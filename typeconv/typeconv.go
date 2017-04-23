@@ -5,6 +5,44 @@ import (
 	"reflect"
 )
 
+// An invalidPointerError describes an invalid argument passed to Set.
+type invalidPointerError struct {
+	Type reflect.Type
+}
+
+func (i *invalidPointerError) Error() string {
+	if i.Type == nil {
+		return "typeconv: Set (nil)"
+	}
+
+	if i.Type.Kind() != reflect.Ptr {
+		return "typeconv: Set(non-pointer " + i.Type.String() + ")"
+	}
+	return "typeconv: Set(nil " + i.Type.String() + ")"
+}
+
+func Set(dst interface{}, src interface{}) error {
+	dstReflectV := reflect.ValueOf(dst)
+	dstReflectT := reflect.TypeOf(dst)
+	if dstReflectV.Kind() != reflect.Ptr || dstReflectV.IsNil() {
+		return &invalidPointerError{dstReflectT}
+	}
+
+	srcReflectV := reflect.ValueOf(src)
+	srcReflectT := reflect.TypeOf(src)
+
+	dstElem := dstReflectV.Elem()
+	dstElemT := dstElem.Type()
+
+	if dstElemT != srcReflectT {
+		return fmt.Errorf("gconfig: set() dst's element type(%s) and src's type(%s) do not match", dstElemT.String(), srcReflectT.String())
+	}
+
+	dstElem.Set(srcReflectV)
+
+	return nil
+}
+
 func MapStringBool(v map[string]interface{}) (map[string]bool, error) {
 	if v == nil {
 		return nil, nil
