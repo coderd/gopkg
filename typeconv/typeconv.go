@@ -35,7 +35,7 @@ func Set(dst interface{}, src interface{}) error {
 	dstElemT := dstElem.Type()
 
 	if dstElemT != srcReflectT {
-		return fmt.Errorf("gconfig: set() dst's element type(%s) and src's type(%s) do not match", dstElemT.String(), srcReflectT.String())
+		return fmt.Errorf("typeconv: Set() dst's element type(%s) and src's type(%s) do not match", dstElemT.String(), srcReflectT.String())
 	}
 
 	dstElem.Set(srcReflectV)
