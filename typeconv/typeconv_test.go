@@ -1,8 +1,9 @@
 package typeconv
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestMapStringBool(t *testing.T) {
